@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Finance Manager</title>
-    <link rel="stylesheet" href="style.css"> <!-- CSS Datei verknüpfen -->
+    <link rel="stylesheet" href="style.css">
+    <script src="transactionManager.js"></script>
 </head>
 <body>
     <header>
@@ -11,17 +12,16 @@
     </header>
     <nav>
         <!-- Navigation Links hier -->
-        <a href="#allTransactions">All Transactions</a>
-        <a href="#newTransaction">New Transaction</a>
-        <a href="#editTransactions">Change / Delete Transactions</a>
+        <a href="#allTransactions" id="showTransactions-link">All Transactions</a>
+        <a href="#newTransaction" id="createTransaction-link">New Transaction</a>
+        <a href="#editTransactions" id="editTransaction-link">Change / Delete Transactions</a>
     </nav>
-    <main id="main-content">
+    
+    <main id="content">
         <!-- Dynamischer Inhalt wird hier geladen -->
     </main>
     <footer>
         <p>© 2023 Finance Manager / All Rights Reserved.</p>
     </footer>   
-    <script src="main.js"></script>
-    <script src="showEntries.js"></script>
 </body>
 </html>
