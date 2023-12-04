@@ -30,5 +30,4 @@ document.addEventListener("DOMContentLoaded", function(){
         event.preventDefault();
         handleRoute();
     });
-    initializeApp();
 });

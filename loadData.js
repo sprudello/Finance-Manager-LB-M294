@@ -3,7 +3,6 @@
   }
   const renderNewTransactionForm = function(){
     if(isLoggedIn){
-      window.location.hash = "addTransaction";
       const formHTML = `
       <h2>New Transaction</h2>
       <form id="transaction-form">
@@ -66,7 +65,6 @@
 
   const renderEditForm = function(){
     if(isLoggedIn){
-      window.location.hash = "editTransaction";
       const formHTML = `
         <h2>Edit Transaction</h2>
         <form id="edit-transaction-form">
@@ -107,7 +105,6 @@
 
   const renderAllTransactions = function () {
     if(isLoggedIn){
-      window.location.hash = "allTransactions";
       fetch(apiUrl, { method: "GET" })
       .then((response) => {
           if (!response.ok) {
@@ -153,8 +150,6 @@
 
 
   const renderLoginForm = function () {
-    window.location.hash = "login";
-    var content = null;
     const form = document.createElement("form");
     form.id = "login-form";
     form.innerHTML = `
