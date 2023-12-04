@@ -5,43 +5,34 @@ var isLoggedIn = false;
 const handleLogin = function () {
     const usernameInput = document.getElementById("username").value;
     const passwordInput = document.getElementById("password").value;
-
-    const credentials = {
-        username: usernameInput,
-        password: passwordInput
-    };
+    console.log(`${usernameInput} ${passwordInput}`);
 
     // Send a POST request to the authentication API
     fetch(apiAuthUrl, {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(credentials),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        // Check the response from the API for successful login
-        if (data.success) {
-            // Authentication successful
-            alert("Login successful!");
-            // Add logic to redirect to the authenticated section of your app or perform other actions.
-        } else {
-            // Authentication failed
-            alert("Invalid username or password. Please try again.");
-            // Clear the input fields
-            document.getElementById("username").value = "";
-            document.getElementById("password").value = "";
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error during login.');
-    });
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: usernameInput,
+                password: passwordInput
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Login failed');
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert("Great Success!");
+            isLoggedIn = true;
+            renderAllTransactions();
+        })
+        .catch(error => {
+            // Handle login failure error message
+            console.error('Login error:', error);
+            alert('Login fehlgeschlagen. Überprüfe deine Anmeldedaten.');
+        });
 };
 

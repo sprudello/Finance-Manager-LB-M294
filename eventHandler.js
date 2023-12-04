@@ -23,13 +23,4 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         renderLoginForm();
     });
-    
-    const saveChanges = function(){
-        const saveChangesButton = document.getElementById("save-changes-button");
-        saveChangesButton.addEventListener("click", function (event) {
-        event.preventDefault();
-        // Handle the save changes logic here
-        saveChanges();
-    });
-    }
 });

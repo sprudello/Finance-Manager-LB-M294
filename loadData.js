@@ -166,7 +166,8 @@ const renderLoginForm = function () {
 
   // Attach a click event handler to the login button
   const loginButton = form.querySelector("#login-button");
-  loginButton.addEventListener("click", function () {
+  loginButton.addEventListener("click", (event) => {
+      event.preventDefault();
       handleLogin();
   });
 
