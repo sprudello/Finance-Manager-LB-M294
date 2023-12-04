@@ -5,6 +5,7 @@ const mainSection = function(){
 }
 const renderNewTransactionForm = function(){
   if(isLoggedIn){
+    window.location.hash = "addTransaction";
     const formHTML = `
     <h2>New Transaction</h2>
     <form id="transaction-form">
@@ -67,6 +68,7 @@ const renderEditFormOptions = function(){
 
 const renderEditForm = function(){
   if(isLoggedIn){
+    window.location.hash = "editTransaction";
     const formHTML = `
       <h2>Edit Transaction</h2>
       <form id="edit-transaction-form">
@@ -107,6 +109,7 @@ const renderEditForm = function(){
 
 const renderAllTransactions = function () {
   if(isLoggedIn){
+    window.location.hash = "allTransactions";
     fetch(apiUrl, { method: "GET" })
     .then((response) => {
         if (!response.ok) {
@@ -152,6 +155,7 @@ const renderAllTransactions = function () {
 
 
 const renderLoginForm = function () {
+  window.location.hash = "login";
   const form = document.createElement("form");
   form.id = "login-form";
   form.innerHTML = `
@@ -174,5 +178,3 @@ const renderLoginForm = function () {
   mainSection().innerHTML = "";
   mainSection().appendChild(form);
 }
-
-

@@ -5,7 +5,6 @@ var isLoggedIn = false;
 const handleLogin = function () {
     const usernameInput = document.getElementById("username").value;
     const passwordInput = document.getElementById("password").value;
-    console.log(`${usernameInput} ${passwordInput}`);
 
     // Send a POST request to the authentication API
     fetch(apiAuthUrl, {

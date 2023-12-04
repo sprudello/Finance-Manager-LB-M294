@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     newTransaction.addEventListener("click", (event) => {
         event.preventDefault();
+        window.location.hash = "addTransaction";
         renderNewTransactionForm();
     });
 
