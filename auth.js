@@ -34,4 +34,3 @@ const handleLogin = function () {
             alert('Login fehlgeschlagen. Überprüfe deine Anmeldedaten.');
         });
 };
-

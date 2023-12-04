@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const allTransactions = document.getElementById("showTransactions-link");
     const editTransaction = document.getElementById("editTransaction-link");
     const login = document.getElementById("login-link");
+    
 
     newTransaction.addEventListener("click", (event) => {
         event.preventDefault();
-        window.location.hash = "addTransaction";
         renderNewTransactionForm();
     });
 
