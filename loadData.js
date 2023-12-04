@@ -39,6 +39,32 @@ const renderNewTransactionForm = function(){
   }
 }
 
+const renderEditFormOptions = function(){
+  const transactionSelect = document.getElementById("transaction-select");
+
+  // Fetch data from the API using the apiUrl
+  fetch(apiUrl, { method: "GET" })
+      .then((response) => {
+          if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+      })
+      .then((data) => {
+          // Iterate through the fetched data and create options for the select element
+          data.forEach((transaction) => {
+              const option = document.createElement("option");
+              option.value = transaction.id; // Use a unique identifier for each transaction
+              option.textContent = `ID: ${transaction.id}, Date: ${transaction.executionDate}, Description: ${transaction.description}`;
+              transactionSelect.appendChild(option);
+          });
+      })
+      .catch((error) => {
+          console.error('Error:', error);
+    });
+  }
+
+
 const renderEditForm = function(){
   if(isLoggedIn){
     const formHTML = `
@@ -71,39 +97,12 @@ const renderEditForm = function(){
     const saveChangesButton = document.getElementById("save-changes-button");
         saveChangesButton.addEventListener("click", function (event) {
         event.preventDefault();
-        // Handle the save changes logic here
         saveChanges();
     }); 
   }
   else{
     renderLoginForm();
   }
-
-const renderEditFormOptions = function(){
-  const transactionSelect = document.getElementById("transaction-select");
-
-  // Fetch data from the API using the apiUrl
-  fetch(apiUrl, { method: "GET" })
-      .then((response) => {
-          if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-      })
-      .then((data) => {
-          // Iterate through the fetched data and create options for the select element
-          data.forEach((transaction) => {
-              const option = document.createElement("option");
-              option.value = transaction.id; // Use a unique identifier for each transaction
-              option.textContent = `ID: ${transaction.id}, Date: ${transaction.executionDate}, Description: ${transaction.description}`;
-              transactionSelect.appendChild(option);
-          });
-      })
-      .catch((error) => {
-          console.error('Error:', error);
-      });
-  }
-    
 }
 
 const renderAllTransactions = function () {
