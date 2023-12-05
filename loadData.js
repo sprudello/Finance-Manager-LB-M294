@@ -1,6 +1,7 @@
   const mainSection = function(){
     return document.getElementById("content");
   }
+  //Renders a form to put in the transaction when logged in
   const renderNewTransactionForm = function(){
     if(isLoggedIn){
       const formHTML = `
@@ -40,7 +41,6 @@
   const renderEditFormOptions = function(){
     const transactionSelect = document.getElementById("transaction-select");
 
-    // Fetch data from the API using the apiUrl
     fetch(apiUrl, { method: "GET" })
         .then((response) => {
             if (!response.ok) {
@@ -49,10 +49,10 @@
             return response.json();
         })
         .then((data) => {
-            // Iterate through the fetched data and create options for the select element
+            // Loads the data into the selector
             data.forEach((transaction) => {
                 const option = document.createElement("option");
-                option.value = transaction.id; // Use a unique identifier for each transaction
+                option.value = transaction.id; 
                 option.textContent = `ID: ${transaction.id}, Date: ${transaction.executionDate}, Description: ${transaction.description}`;
                 transactionSelect.appendChild(option);
             });
@@ -62,7 +62,7 @@
       });
     }
 
-
+    //Renders editTransactionForm if logged in
   const renderEditForm = function(){
     if(isLoggedIn){
       const formHTML = `
@@ -102,7 +102,7 @@
       renderLoginForm();
     }
   }
-
+  //Renders all Transactions into a List if you're logged in
   const renderAllTransactions = function () {
     if(isLoggedIn){
       fetch(apiUrl, { method: "GET" })
@@ -114,7 +114,7 @@
       })
       .then((data) => {
           const transactionsList = document.createElement("ul");
-          let transactionsHTML = ""; // Create an empty string to store the HTML
+          let transactionsHTML = ""; 
 
           data.forEach((transaction) => {
               transactionsHTML += `
@@ -125,9 +125,9 @@
               `;
           });
 
-          transactionsList.innerHTML = transactionsHTML; // Set the HTML directly
+          transactionsList.innerHTML = transactionsHTML; 
 
-          // Clear existing content in mainSection and set the new list
+          
           mainSection().innerHTML = "";
           mainSection().appendChild(transactionsList);
 
@@ -160,15 +160,12 @@
         <input type="password" id="password" name="password" required><br><br>
         <button type="button" id="login-button">Login</button>
     `;
-
-    // Attach a click event handler to the login button
     const loginButton = form.querySelector("#login-button");
     loginButton.addEventListener("click", (event) => {
         event.preventDefault();
         handleLogin();
     });
-
-    // Clear the content section and append the form
+    //Displays the Loginform
     mainSection().innerHTML = "";
     mainSection().appendChild(form);
   }

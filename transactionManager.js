@@ -44,7 +44,7 @@ const saveTransaction = function(){
         const confirmDelete = confirm("Are you sure you want to delete this transaction?");
     
         if (!confirmDelete) {
-            // If the user cancels the confirmation, do nothing
+            //If user regrets his desicion
             return;
         }
     
@@ -62,7 +62,7 @@ const saveTransaction = function(){
             console.log('Transaction deleted:', data);
             alert('Transaction deleted successfully!');
             renderAllTransactions();
-            // After successful deletion, you can refresh the transaction list or perform any other necessary actions.
+            //After deletion transactions will be relaoded
         })
         .catch(error => {
             console.error('Error:', error);
@@ -71,17 +71,14 @@ const saveTransaction = function(){
         
     }
     const saveChanges = function () {
-        // Get the selected transaction ID, edit field, and edit value
         const selectedTransactionId = document.getElementById("transaction-select").value;
         const editField = document.getElementById("edit-select").value;
         const editValue = document.getElementById("edit-value").value;
     
-        // Construct an object with the updated data
         const updatedData = {
             [editField]: editValue,
         };
     
-        // Make a PUT request to update the selected transaction with the new data
         fetch(`${apiUrl}/${selectedTransactionId}`, {
             method: "PUT",
             headers: {

@@ -1,8 +1,6 @@
-// Define a function to handle routing based on the hash fragment
 function handleRoute() {
     const hash = window.location.hash;
 
-    // Check the hash and load the corresponding content
     switch (hash) {
         case "#login":
             renderLoginForm();
@@ -17,7 +15,6 @@ function handleRoute() {
             renderEditForm();
             break;
         default:
-            // Handle any other routes or the default route
             renderLoginForm();
             break;
     }
@@ -25,7 +22,7 @@ function handleRoute() {
 
 
 document.addEventListener("DOMContentLoaded", function(){
-    handleRoute(); // Handle the initial route
+    handleRoute();
     window.addEventListener("hashchange", (event) =>{
         event.preventDefault();
         handleRoute();
